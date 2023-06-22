@@ -1,0 +1,9 @@
+.profile__image-edit {
+    background-image: url(../../../images/profile-edit.svg);
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

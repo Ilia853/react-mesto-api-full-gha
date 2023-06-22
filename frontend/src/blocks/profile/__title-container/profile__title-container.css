@@ -1,0 +1,5 @@
+.profile__title-container {
+    display: flex;
+    margin: 26px 0 12px;
+    align-items: flex-end;
+}

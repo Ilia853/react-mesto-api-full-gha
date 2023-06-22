@@ -1,0 +1,11 @@
+.popup__reg-status_type_ok {
+    box-sizing: border-box;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-image: url(../../../../images/reg-ok.png);
+    background-position: center;
+    cursor: pointer;
+    width: 120px;
+    height: 120px;
+    margin: 60px auto 32px;
+}
