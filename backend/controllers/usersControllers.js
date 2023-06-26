@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 const bcrypt = require('bcryptjs');
+console.log('USERS', process.env.NODE_ENV);
 // eslint-disable-next-line import/no-extraneous-dependencies
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
@@ -7,7 +8,7 @@ const NotFoundError = require('../errors/not-found-err');
 const BadRequestError = require('../errors/bad-request-err');
 const UnauthorizedError = require('../errors/unauthorized-err');
 const Conflict = require('../errors/conflict-err');
-const { JWT_SECRET } = process.env;
+const { JWT_SECRET, NODE_ENV } = process.env;
 
 const login = (req, res, next) => {
   const { email, password } = req.body;
@@ -27,7 +28,7 @@ const login = (req, res, next) => {
     .then((user) => {
       const token = jwt.sign(
         { _id: user.id },
-        JWT_SECRET,
+        NODE_ENV === 'production' ? JWT_SECRET : 'kamikaza',
         { expiresIn: '7d' },
       );
       res.send({ message: 'вот токен', token });
