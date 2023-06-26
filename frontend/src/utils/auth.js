@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:3001";
+export const BASE_URL = "http://158.160.7.158:3000";
 
 function checkResponse(res){
     return res.ok ? res.json() : Promise.reject(res.statusText)

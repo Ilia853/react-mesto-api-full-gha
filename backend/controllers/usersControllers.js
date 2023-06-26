@@ -8,7 +8,6 @@ const BadRequestError = require('../errors/bad-request-err');
 const UnauthorizedError = require('../errors/unauthorized-err');
 const Conflict = require('../errors/conflict-err');
 const { NODE_ENV, JWT_SECRET='JWT_SECRET' } = process.env;
-console.log(JWT_SECRET, NODE_ENV);
 
 const login = (req, res, next) => {
   const { email, password } = req.body;
