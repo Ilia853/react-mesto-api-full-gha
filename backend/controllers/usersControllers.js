@@ -8,6 +8,7 @@ const BadRequestError = require('../errors/bad-request-err');
 const UnauthorizedError = require('../errors/unauthorized-err');
 const Conflict = require('../errors/conflict-err');
 const { NODE_ENV, JWT_SECRET='JWT_SECRET' } = process.env;
+console.log(JWT_SECRET, NODE_ENV);
 
 const login = (req, res, next) => {
   const { email, password } = req.body;
@@ -27,7 +28,7 @@ const login = (req, res, next) => {
     .then((user) => {
       const token = jwt.sign(
         { _id: user.id },
-        NODE_ENV === 'production' ? JWT_SECRET : 'kamikaza',
+        NODE_ENV === 'production' ? JWT_SECRET : 'JWT_SECRET',
         { expiresIn: '7d' },
       );
       res.send({ message: 'вот токен', token });
