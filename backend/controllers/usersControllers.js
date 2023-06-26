@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 const bcrypt = require('bcryptjs');
-console.log('USERS', process.env.NODE_ENV);
 // eslint-disable-next-line import/no-extraneous-dependencies
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
@@ -8,7 +7,7 @@ const NotFoundError = require('../errors/not-found-err');
 const BadRequestError = require('../errors/bad-request-err');
 const UnauthorizedError = require('../errors/unauthorized-err');
 const Conflict = require('../errors/conflict-err');
-const { JWT_SECRET, NODE_ENV } = process.env;
+const { NODE_ENV, JWT_SECRET='JWT_SECRET' } = process.env;
 
 const login = (req, res, next) => {
   const { email, password } = req.body;
