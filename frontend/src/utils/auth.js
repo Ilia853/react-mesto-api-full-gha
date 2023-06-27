@@ -1,4 +1,4 @@
-export const BASE_URL = "http://158.160.7.158:3000";
+export const BASE_URL = "https://iliaegorov.nomoreparties.sbs";
 
 function checkResponse(res){
     return res.ok ? res.json() : Promise.reject(res.statusText)
