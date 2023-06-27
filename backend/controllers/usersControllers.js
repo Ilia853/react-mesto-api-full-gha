@@ -7,7 +7,8 @@ const NotFoundError = require('../errors/not-found-err');
 const BadRequestError = require('../errors/bad-request-err');
 const UnauthorizedError = require('../errors/unauthorized-err');
 const Conflict = require('../errors/conflict-err');
-const { NODE_ENV, JWT_SECRET='JWT_SECRET' } = process.env;
+
+const { NODE_ENV, JWT_SECRET = 'JWT_SECRET' } = process.env;
 
 const login = (req, res, next) => {
   const { email, password } = req.body;
