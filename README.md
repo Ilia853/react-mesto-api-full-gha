@@ -13,4 +13,4 @@ IP 158.160.7.158
 
 Frontend https://mesto.iliaegorov.nomoreparties.sbs/sign-up
 
-Backend https://iliaegorov.nomoreparties.sbs/sign-up
+Backend https://iliaegorov.nomoreparties.sbs
