@@ -9,6 +9,8 @@ const {
   dislikeCard,
 } = require('../controllers/cardsControllers');
 
+const reg = require('../models/card');
+
 router.get('/', getCards);
 
 router.delete('/:cardId', celebrate({
@@ -21,7 +23,7 @@ router.post('/', celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
     /* eslint-disable */
-    link: Joi.string().required().pattern(/^((http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/),
+    link: Joi.string().required().pattern(RegExp(reg)),
     /* eslint-enable */
     owner: Joi.string(),
   }),

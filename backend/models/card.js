@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+/* eslint-disable */
+const reg = /^((http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/;
+/* eslint-enable */
 
 const cardSchema = new mongoose.Schema({
   name: {
@@ -13,7 +16,7 @@ const cardSchema = new mongoose.Schema({
     validate: {
     /* eslint-disable */
       validator: function (v) {
-        return /^((http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/.test(v);
+        return RegExp(reg).test(v);
       },
     },
     /* eslint-enable */
@@ -37,3 +40,4 @@ const cardSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('card', cardSchema);
+module.exports = reg;

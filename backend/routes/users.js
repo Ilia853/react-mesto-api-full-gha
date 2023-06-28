@@ -8,12 +8,13 @@ const {
   updateUser,
   updateAvatar,
 } = require('../controllers/usersControllers');
+const reg = require('../models/card');
 
 router.get('/', getUsers);
 
 router.get('/me', celebrate({
   params: Joi.object().keys({
-    userId: Joi.string().length(24).hex(),
+    userId: Joi.string().length(24).hex().required(),
   }),
 }), getUser);
 
@@ -25,15 +26,16 @@ router.get('/:userId', celebrate({
 
 router.patch('/me', celebrate({
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30),
-    about: Joi.string().min(2).max(30),
+    name: Joi.string().min(2).max(30).required(),
+    about: Joi.string().min(2).max(30).required(),
   }),
 }), updateUser);
-
+/* eslint-disable */
+/* eslint-enable */
 router.patch('/me/avatar', celebrate({
   body: Joi.object().keys({
     /* eslint-disable */
-    avatar: Joi.string().pattern(/^((http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/),
+    avatar: Joi.string().required().pattern(RegExp(reg)),
     /* eslint-enable */
   }),
 }), updateAvatar);

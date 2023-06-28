@@ -14,11 +14,10 @@ const deleteCard = (req, res, next) => {
     .then((card) => {
       if (card) {
         if (card.owner.toString() === req.user._id) {
-          Card.findByIdAndRemove(req.params.cardId)
+          return Card.findByIdAndRemove(req.params.cardId)
             .then(() => res.status(200).send(card));
-        } else {
-          throw new ForbiddenError('нет прав на удаление карточки');
         }
+        throw new ForbiddenError('нет прав на удаление карточки');
       } else {
         throw new NotFoundError('Карточка не найдена');
       }

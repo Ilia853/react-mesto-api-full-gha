@@ -15,12 +15,12 @@ const login = (req, res, next) => {
   User.findOne({ email }).select('+password')
     .then((user) => {
       if (!user) {
-        throw new BadRequestError('Неправильные почта или пароль');
+        throw new UnauthorizedError('Неправильные почта или пароль');
       }
       return bcrypt.compare(password, user.password)
         .then((match) => {
           if (!match) {
-            throw new BadRequestError('Неправильные почта или пароль');
+            throw new UnauthorizedError('Неправильные почта или пароль');
           }
           return user;
         });
@@ -52,13 +52,7 @@ const getUser = (req, res, next) => {
         throw new NotFoundError('Пользователь не найден');
       }
     })
-    .catch((err) => {
-      if (err.name === 'CastError') {
-        next(new BadRequestError('Некорректный id пользователя'));
-      } else {
-        next(err);
-      }
-    });
+    .catch(next);
 };
 
 const getUserById = (req, res, next) => {
