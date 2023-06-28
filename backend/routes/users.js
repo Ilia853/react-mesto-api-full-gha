@@ -12,7 +12,7 @@ const {
 router.get('/', getUsers);
 
 router.get('/me', celebrate({
-  params: Joi.object().keys({
+  body: Joi.object().keys({
     userId: Joi.string().length(24).hex().required(),
   }),
 }), getUser);
@@ -29,6 +29,7 @@ router.patch('/me', celebrate({
     about: Joi.string().min(2).max(30).required(),
   }),
 }), updateUser);
+
 router.patch('/me/avatar', celebrate({
   body: Joi.object().keys({
     /* eslint-disable */
