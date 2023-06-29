@@ -34,9 +34,7 @@ const login = (req, res, next) => {
       res.send({ message: 'вот токен', token });
     })
     // eslint-disable-next-line no-unused-vars
-    .catch((err) => {
-      next(new UnauthorizedError('Ошибка авторизации, некорректный токен'));
-    });
+    .catch(next);
 };
 
 const getUsers = (req, res, next) => User.find({})
